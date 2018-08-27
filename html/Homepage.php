@@ -1,1 +1,1 @@
-<p>hello</p>
+<!DOCTYPE html>

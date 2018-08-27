@@ -11,17 +11,20 @@
 <header>
 	<h1>Jzit Music</h1>
 	 <ul>
-	  <li><a class="active" href="html/Homepage.php">Homepage</a></li>
-	  <li><a href="html/Request.php">Request a song</a></li>
-	  <li><a href="html/About.php">About</a></li>
-	  <li><a href="html/Login.php">Login</a></li>
+	  <li><a class="active menu Hom">Homepage</a></li>
+	  <li><a class="menu Req">Request a song</a></li>
+	  <li><a class="menu Abo">About</a></li>
+	  <li><a class="menu Log">Login</a></li>
 	</ul> 
 </header>
 
 
 <section>
 	
-	 <div w3-include-html="html/Homepage.php"></div> 
+	 <div class="content Ho" w3-include-html="html/Homepage.php"></div>
+	 <div class="content Re" hidden w3-include-html="html/Request.php"></div>
+	 <div class="content Ab" hidden w3-include-html="html/About.php"></div>
+	 <div class="content Lo" hidden w3-include-html="html/Login.php"></div>
 
 </section>
 

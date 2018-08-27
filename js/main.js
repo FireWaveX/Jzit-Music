@@ -4,9 +4,22 @@ $(document).ready(function() {
 	  addRequest();
 	});
 
+
+  $( ".menu" ).click(function() {
+    $("a").removeClass( "active" );
+    $(this).addClass( "active" );
+
+    showHTML();
+
+  });
+
+  
+
 	includeHTML();
 
 });
+
+
 
 
 function addRequest() {
@@ -37,6 +50,33 @@ function addRequest() {
 	$(".link").val('');
 
 }
+
+
+function showHTML() {
+
+  $( ".Hom" ).click(function() {
+    $(".content").attr('hidden', 'true');
+    $(".Ho").removeAttr("hidden");
+  });
+
+  $( ".Req" ).click(function() {
+    $(".content").attr('hidden', 'true');
+    $(".Re").removeAttr("hidden");
+  });
+
+  $( ".Abo" ).click(function() {
+    $(".content").attr('hidden', 'true');
+    $(".Ab").removeAttr("hidden");
+  });
+
+  $( ".Log" ).click(function() {
+    $(".content").attr('hidden', 'true');
+    $(".Lo").removeAttr("hidden");
+  });
+
+}
+
+
 
 function includeHTML() {
   var z, i, elmnt, file, xhttp;
