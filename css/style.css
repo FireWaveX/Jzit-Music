@@ -1,15 +1,20 @@
 @import url('https://fonts.googleapis.com/css?family=Abril+Fatface|Questrial');
 
 body {
-    font-family: 'Questrial', sans-serif;
+    background-image: url("../images/micro.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
 }
 
 h1 {
     font-family: 'Abril Fatface', cursive;
     font-size: 4em;
+    color: white;
 }
 
 ul {
+    font-family: 'Questrial', sans-serif;
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -19,6 +24,7 @@ ul {
 
 li {
     float: left;
+    font-size: 2em;
 }
 
 li a {
