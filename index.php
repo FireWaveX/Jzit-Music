@@ -18,7 +18,11 @@
 </header>
 
 
+<section>
+	
+	 <div w3-include-html="html/Homepage.php"></div> 
 
+</section>
 
 
 <script type='text/javascript' src='js/jquery.js'></script>
