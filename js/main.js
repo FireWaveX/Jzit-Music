@@ -159,3 +159,15 @@ function addIFrame(link, list){
 
 
 }
+
+
+var postDataRequest = new Vue({
+  el: '#Re',
+  methods: {
+    request_button2: function () {
+      
+
+      getRequests();
+    }
+  }
+})
