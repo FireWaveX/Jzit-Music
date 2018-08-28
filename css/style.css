@@ -6,11 +6,11 @@ body {
     background-attachment: fixed;
     background-size: cover;
     font-family: 'Questrial', sans-serif;
+    font-size: 18px;
 }
 
 p {
     padding: 1%;
-    font-size: 18px;
 }
 
 #listOfSongs {
@@ -23,11 +23,18 @@ p {
 }
 
 form {
-    padding: 5%;
+    padding-left: 5%;
 }
 
 form input {
     margin-bottom: 20px;
+    width: 60%;
+}
+
+form textarea {
+    margin-bottom: 20px;
+    height: 100px;
+    width: 60%;
 }
 
 #Re button {
@@ -44,7 +51,7 @@ form input {
     left: 0;
 }
 
-#sing-btn button {
+button {
     padding: 10px 50px;
     background-color: #3283E2;
     border: none;
@@ -58,12 +65,12 @@ form input {
     transition:         all 200ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
 }
 
-#sing-btn button:before{
+button:before{
     left: 130%;
     top: 0;
 }
 
-#sing-btn button:hover{
+button:hover{
     transform-origin: center center;
     transform: scale(1.2);
 
@@ -119,7 +126,7 @@ ul {
 
 li {
     float: left;
-    font-size: 2em;
+    font-size: 1.5em;
 }
 
 li a {
