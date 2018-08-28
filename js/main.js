@@ -81,13 +81,12 @@ function showHTML() {
 
 function getRequests(){
 
-  console.log('click');
   $.ajax({
     type: 'GET',
     url: 'https://apex.oracle.com/pls/apex/anime_keeper/Jzit/getRequest',
     success: function(data) {
-
-      console.log(data);
+      showData(data);
+      //console.log(data);
     },
 
     error: function() {
@@ -127,4 +126,36 @@ function includeHTML() {
       return;
     }
   }
+}
+
+function showData(data) {
+
+  $("#listOfSongs").empty();
+
+  console.log(data.items);
+
+  var items = data.items;
+
+  var ul = document.createElement('ul');
+
+  document.getElementById('listOfSongs').appendChild(ul);
+
+  items.forEach(function (item) {
+
+    var li = document.createElement('li');
+    ul.appendChild(li);
+
+    li.innerHTML += item.id;
+
+    addIFrame(item.link, li);
+
+  });
+
+
+}
+
+function addIFrame(link, list){
+
+
+
 }
