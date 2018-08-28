@@ -34,7 +34,7 @@
 	 </div>
 
 
-	 <div class="content Re" hidden> <!-- w3-include-html="html/Request.php" -->
+	 <div id="Re" class="content Re" hidden> <!-- w3-include-html="html/Request.php" -->
 
 	 	<form>
 		  Link of the song:<br>
@@ -44,6 +44,7 @@
 		</form>
 
 		<button class="request_button" type="button">Send</button>
+		<button v-on:click="request_button2">Send2</button>
 
 	 </div>
 
