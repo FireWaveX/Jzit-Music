@@ -19,22 +19,23 @@
 </header>
 
 
-<section>
+<section id="sec1">
 
-	 <div class="content Ho"> <!-- w3-include-html="html/Homepage.php" -->
 
-	 	<button class="action" type="button">Send</button>
+	<div class="content Ho"> <!-- w3-include-html="html/Homepage.php" -->
 
 	 	<div id="listOfSongs">
 	 		
-
-
 	 	</div>
 
-	 </div>
+	 	<div id="sing-btn">
+	 		<button class="action" type="button">Let's sing !</button>
+	 	</div>
+
+	</div>
 
 
-	 <div id="Re" class="content Re" hidden> <!-- w3-include-html="html/Request.php" -->
+	<div id="Re" class="content Re" hidden> <!-- w3-include-html="html/Request.php" -->
 
 	 	<form>
 		  Link of the song:<br>
@@ -46,11 +47,11 @@
 		<button class="request_button" type="button">Send</button>
 		<button v-on:click="request_button2">Send2</button>
 
-	 </div>
+	</div>
 
 
-	 <div class="content Ab" hidden></div>  <!-- w3-include-html="html/About.php" -->
-	 <div class="content Lo" hidden></div> <!-- w3-include-html="html/Login.php" -->
+	<div class="content Ab" hidden></div>  <!-- w3-include-html="html/About.php" -->
+	<div class="content Lo" hidden></div> <!-- w3-include-html="html/Login.php" -->
 
 </section>
 
