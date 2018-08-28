@@ -21,15 +21,14 @@
 
 <section id="sec1">
 
-
-	<div class="content Ho"> <!-- w3-include-html="html/Homepage.php" -->
+	<div id="Ho" class="content Ho"> <!-- w3-include-html="html/Homepage.php" -->
 
 	 	<div id="listOfSongs">
 	 		
 	 	</div>
 
 	 	<div id="sing-btn">
-	 		<button class="action" type="button">Let's sing !</button>
+	 		<button v-on:click="request_button2">Let's sing !</button>
 	 	</div>
 
 	</div>
@@ -45,7 +44,7 @@
 		</form>
 
 		<button class="request_button" type="button">Send</button>
-		<button v-on:click="request_button2">Send2</button>
+		
 
 	</div>
 

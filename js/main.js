@@ -4,11 +4,10 @@ $(document).ready(function() {
 	  addRequest();
 	});
 
-  $( ".action" ).click(function() {
-    getRequests();
-  });
-
-  
+  // non vue.js option
+  // $( ".action" ).click(function() {
+  //   getRequests();
+  // });
 
   $( ".menu" ).click(function() {
     $("a").removeClass( "active" );
@@ -21,9 +20,6 @@ $(document).ready(function() {
 
 });
 
-
-
-
 function addRequest() {
 
 	var message = $.trim($('.message').val());
@@ -34,7 +30,6 @@ function addRequest() {
         alert('input link please');
         return false;
     }
-
 
 	var xhr = new XMLHttpRequest();
 	var url = "https://apex.oracle.com/pls/apex/anime_keeper/Jzit/postRequest";
@@ -157,17 +152,26 @@ function showData(data) {
 function addIFrame(link, list){
 
 
+//https://crossorigin.me/
+
+  var iframe = document.createElement('iframe');
+  iframe.src = link;
+  list.appendChild(iframe);
+
 
 }
 
 
-var postDataRequest = new Vue({
-  el: '#Re',
+
+/*---------- vue.js ----------*/
+
+new Vue({
+  el: '#Ho',
   methods: {
     request_button2: function () {
       
-
       getRequests();
+
     }
   }
 })
