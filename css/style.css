@@ -41,6 +41,10 @@ form textarea {
     margin: 5%;
 }
 
+#Lo button {
+    margin: 5%;
+}
+
 #sing-btn {
     padding: 50px;
     background: url(../images/maze-black.png) repeat;
@@ -106,6 +110,15 @@ h1 {
     margin-bottom: 30px;
 }
 
+h2 {
+    color: #3283E2;
+    font-size: 2em;
+    font-family: 'Questrial', sans-serif;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
 header {
     margin-left: 3%;
     margin-right: 3%;
@@ -116,17 +129,24 @@ section {
     margin-right: 3%;
 }
 
+header ul {
+    background-color: rgb(25,25,25,0.95);
+}
+
+header li {
+    float: left;
+    font-size: 1.5em;
+}
+
+#listOfSongs li:hover {
+    color: #3283E2;
+}
+
 ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: rgb(25,25,25,0.95);
-}
-
-li {
-    float: left;
-    font-size: 1.5em;
 }
 
 li a {
@@ -143,6 +163,15 @@ li a:hover {
     background-color: #111;
     text-decoration: none;
     color: white;
+}
+
+#listOfSongs li {
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+#listOfSongs li:hover {
+    color: #3283E2;
 }
 
 .active {

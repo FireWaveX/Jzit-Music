@@ -25,6 +25,7 @@
 
 		<!-- <button class="action" type="button">Send</button> --> <!-- non vue.js option -->
 	 	<!-- <button v-on:click="request_button2">Send</button> --> <!-- no need, automatic now -->
+	 	<h2>Song list</h2>
 
 	 	<div id="listOfSongs">
 	 		
@@ -60,8 +61,15 @@
 			<img class="singer-img" src="images/Singer.png">
 	</div>  <!-- w3-include-html="html/About.php" -->
 
-	<div class="content Lo" hidden>
-		<p>You must login before using this website</p>
+	<div id="Re" class="content Lo" hidden>
+		<form>
+		  Username<br>
+		  <input type="text" id="username" name="username" class="username"><br>
+		  Password<br>
+		  <input type="password" id="password" name="password" class="password">
+		</form>
+
+		<button class="login_button" type="button">Log in</button>
 	</div> <!-- w3-include-html="html/Login.php" -->
 
 </section>
