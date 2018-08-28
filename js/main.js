@@ -7,8 +7,6 @@ $(document).ready(function() {
 	  addRequest();
 	});
 
-
-
   // non vue.js option
   // $( ".action" ).click(function() {
   //   getRequests();
@@ -146,8 +144,6 @@ function showData(data) {
     var li = document.createElement('li');
     ul.appendChild(li);
 
-    li.innerHTML += item.id;
-
     addIFrame(item.link, li);
 
   });
@@ -157,16 +153,48 @@ function showData(data) {
 
 function addIFrame(link, list){
 
+  var videoId = getId(link);
 
-//https://crossorigin.me/
+  // var iframe = document.createElement('iframe');
+  // iframe.src = "https://www.youtube.com/embed/" + videoId +"";
+  // list.appendChild(iframe);
 
-  var iframe = document.createElement('iframe');
-  iframe.src = link;
-  list.appendChild(iframe);
+  var key = "AIzaSyApxjtXcMyjhi83AG8CjBxvE4-WBkMwNAE";
 
+  q = 'https://www.googleapis.com/youtube/v3/videos?id='+ videoId +'&key='+ key +'&fields=items(snippet(title))&part=snippet' ;
+
+  $.ajax({
+        url: q, 
+        dataType: "jsonp",
+        success: function(data){
+          var video_name = data.items[0].snippet.title;
+          list.append(video_name);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          alert (textStatus, + ' | ' + errorThrown);
+          var video_name = "ERROR_LOADING_NAME";
+        }
+    });
+
+    // imagelink = "<img src=\"http:\/\/img.youtube.com\/vi\/"+videoId+"\/hqdefault.jpg\">";
+
+    // var video_thumbnail = $(imagelink);
+    //     $("#Ho").append(video_thumbnail);
+        
 
 }
 
+
+function getId(url) {
+    var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    var match = url.match(regExp);
+
+    if (match && match[2].length == 11) {
+        return match[2];
+    } else {
+        return 'error';
+    }
+}
 
 
 /*---------- vue.js ----------*/
