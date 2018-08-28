@@ -40,13 +40,13 @@
 	<div id="Re" class="content Re" hidden> <!-- w3-include-html="html/Request.php" -->
 
 	 	<form>
-		  Link of the song<br>
-		  <input type="text" name="firstname" class="link"><br>
-		  Message<br>
-		  <input type="text" name="lastname" class="message">
+		  Youtube link of the song<br>
+		  <input type="text" id="link" name="link" class="link"><br>
+		  Your message<br>
+		  <textarea id="message" name="message" class="message"></textarea>
 		</form>
 
-		<button class="request_button" type="button">Send</button>
+		<button class="request_button" type="button">Request</button>
 		
 
 	</div>
