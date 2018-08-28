@@ -5,6 +5,12 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
+    font-family: 'Questrial', sans-serif;
+}
+
+p {
+    padding: 5%;
+    font-size: 18px;
 }
 
 #listOfSongs {
@@ -16,6 +22,18 @@ body {
     background-image: url("../images/white-brushed.png");
 }
 
+form {
+    padding: 5%;
+}
+
+form input {
+    margin-bottom: 20px;
+}
+
+#Re button {
+    margin: 5%;
+}
+
 #sing-btn {
     padding: 50px;
     background: url(../images/maze-black.png) repeat;
@@ -25,7 +43,7 @@ body {
 
 #sing-btn button {
     padding: 10px 50px;
-    background-color: #4CAF50;
+    background-color: #3283E2;
     border: none;
     color: rgb(250,250,250);
     font-size: 1.8em;
@@ -68,7 +86,6 @@ section {
 }
 
 ul {
-    font-family: 'Questrial', sans-serif;
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -98,5 +115,14 @@ li a:hover {
 }
 
 .active {
-    background-color: #4CAF50;
+    background-color: #3283E2;
+}
+
+footer {
+    margin-top: 100px;
+    padding: 50px;
+    background: url(../images/maze-black.png) repeat;
+    width: 100%;
+    text-align: center;
+    color: white;
 }

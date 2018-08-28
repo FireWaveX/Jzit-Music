@@ -40,9 +40,9 @@
 	<div id="Re" class="content Re" hidden> <!-- w3-include-html="html/Request.php" -->
 
 	 	<form>
-		  Link of the song:<br>
+		  Link of the song<br>
 		  <input type="text" name="firstname" class="link"><br>
-		  Message:<br>
+		  Message<br>
 		  <input type="text" name="lastname" class="message">
 		</form>
 
@@ -52,10 +52,19 @@
 	</div>
 
 
-	<div class="content Ab" hidden></div>  <!-- w3-include-html="html/About.php" -->
-	<div class="content Lo" hidden></div> <!-- w3-include-html="html/Login.php" -->
+	<div class="content Ab" hidden>
+		<p>About this website</p>
+	</div>  <!-- w3-include-html="html/About.php" -->
+
+	<div class="content Lo" hidden>
+		<p>You must login before using this website</p>
+	</div> <!-- w3-include-html="html/Login.php" -->
 
 </section>
+
+<footer>
+	Copyright Alexandre Ledemé & Thibaut Martinot 2018
+</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
 <script type='text/javascript' src='js/jquery.js'></script>
