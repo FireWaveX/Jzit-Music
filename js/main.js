@@ -1,8 +1,13 @@
 $(document).ready(function() {
 
+
+  getRequests();
+
 	$( ".request_button" ).click(function() {
 	  addRequest();
 	});
+
+
 
   // non vue.js option
   // $( ".action" ).click(function() {
@@ -52,6 +57,7 @@ function addRequest() {
 function showHTML() {
 
   $( ".Hom" ).click(function() {
+    getRequests();
     $(".content").attr('hidden', 'true');
     $(".Ho").removeAttr("hidden");
   });

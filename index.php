@@ -18,17 +18,16 @@
 	</ul> 
 </header>
 
-
 <section>
 
 	 <div id="Ho" class="content Ho"> <!-- w3-include-html="html/Homepage.php" -->
 
 	 	<!-- <button class="action" type="button">Send</button> --> <!-- non vue.js option -->
-	 	<button v-on:click="request_button2">Send</button>
+	 	<!-- <button v-on:click="request_button2">Send</button> --> <!-- no need, automatic now -->
 
 	 	<div id="listOfSongs">
 	 		
-	 		
+
 
 	 	</div>
 
