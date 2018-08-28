@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
-<link rel="stylesheet" type="text/css" href="css/style.css" />
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
 <body>
 
@@ -18,25 +18,26 @@
 	</ul> 
 </header>
 
-<section>
 
-	 <div id="Ho" class="content Ho"> <!-- w3-include-html="html/Homepage.php" -->
+<section id="sec1">
 
-	 	<!-- <button class="action" type="button">Send</button> --> <!-- non vue.js option -->
+	<div id="Ho" class="content Ho"> <!-- w3-include-html="html/Homepage.php" -->
+
+		<!-- <button class="action" type="button">Send</button> --> <!-- non vue.js option -->
 	 	<!-- <button v-on:click="request_button2">Send</button> --> <!-- no need, automatic now -->
 
 	 	<div id="listOfSongs">
 	 		
-
-
 	 	</div>
 
+	 	<div id="sing-btn">
+	 		<button v-on:click="request_button2">Let's sing !</button>
+	 	</div>
+
+	</div>
 
 
-	 </div>
-
-
-	 <div id="Re" class="content Re" hidden> <!-- w3-include-html="html/Request.php" -->
+	<div id="Re" class="content Re" hidden> <!-- w3-include-html="html/Request.php" -->
 
 	 	<form>
 		  Link of the song:<br>
@@ -48,11 +49,11 @@
 		<button class="request_button" type="button">Send</button>
 		
 
-	 </div>
+	</div>
 
 
-	 <div class="content Ab" hidden></div>  <!-- w3-include-html="html/About.php" -->
-	 <div class="content Lo" hidden></div> <!-- w3-include-html="html/Login.php" -->
+	<div class="content Ab" hidden></div>  <!-- w3-include-html="html/About.php" -->
+	<div class="content Lo" hidden></div> <!-- w3-include-html="html/Login.php" -->
 
 </section>
 

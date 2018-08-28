@@ -7,10 +7,64 @@ body {
     background-size: cover;
 }
 
+#listOfSongs {
+    height: 50vh;
+}
+
+.content {
+    width: auto;
+    background-image: url("../images/white-brushed.png");
+}
+
+#sing-btn {
+    padding: 50px;
+    background: url(../images/maze-black.png) repeat;
+    width: 100%;
+    text-align: center;
+}
+
+#sing-btn button {
+    padding: 10px 50px;
+    background-color: #4CAF50;
+    border: none;
+    color: rgb(250,250,250);
+    font-size: 1.8em;
+    font-weight: 100;
+    cursor: pointer;
+    font-family: 'Abril Fatface', cursive;
+
+    -webkit-transition: all 200ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    transition:         all 200ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+#sing-btn button:before{
+    left: 130%;
+    top: 0;
+}
+
+#sing-btn button:hover{
+    transform-origin: center center;
+    transform: scale(1.2);
+
+    -webkit-transition: all 200ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    transition:         all 200ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
 h1 {
     font-family: 'Abril Fatface', cursive;
     font-size: 4em;
     color: white;
+    margin-bottom: 30px;
+}
+
+header {
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
+section {
+    margin-left: 3%;
+    margin-right: 3%;
 }
 
 ul {
@@ -19,7 +73,7 @@ ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+    background-color: rgb(25,25,25,0.95);
 }
 
 li {
@@ -33,11 +87,14 @@ li a {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    cursor: pointer;
 }
 
 /* Change the link color to #111 (black) on hover */
 li a:hover {
     background-color: #111;
+    text-decoration: none;
+    color: white;
 }
 
 .active {
