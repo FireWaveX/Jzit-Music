@@ -4,16 +4,18 @@ $(document).ready(function() {
 	  addRequest();
 	});
 
+  $( ".action" ).click(function() {
+    getRequests();
+  });
+
+  
 
   $( ".menu" ).click(function() {
     $("a").removeClass( "active" );
     $(this).addClass( "active" );
-
-    showHTML();
-
   });
 
-  
+  showHTML();
 
 	includeHTML();
 
@@ -73,6 +75,27 @@ function showHTML() {
     $(".content").attr('hidden', 'true');
     $(".Lo").removeAttr("hidden");
   });
+
+}
+
+
+function getRequests(){
+
+  console.log('click');
+  $.ajax({
+    type: 'GET',
+    url: 'https://apex.oracle.com/pls/apex/anime_keeper/Jzit/getRequest',
+    success: function(data) {
+
+      console.log(data);
+    },
+
+    error: function() {
+
+      console.log('La requête n\'a pas abouti'); 
+    }
+
+  });    
 
 }
 

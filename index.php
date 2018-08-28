@@ -20,11 +20,30 @@
 
 
 <section>
-	
-	 <div class="content Ho" w3-include-html="html/Homepage.php"></div>
-	 <div class="content Re" hidden w3-include-html="html/Request.php"></div>
-	 <div class="content Ab" hidden w3-include-html="html/About.php"></div>
-	 <div class="content Lo" hidden w3-include-html="html/Login.php"></div>
+
+	 <div class="content Ho"> <!-- w3-include-html="html/Homepage.php" -->
+
+	 	<button class="action" type="button">Send</button>
+
+	 </div>
+
+
+	 <div class="content Re" hidden> <!-- w3-include-html="html/Request.php" -->
+
+	 	<form>
+		  Link of the song:<br>
+		  <input type="text" name="firstname" class="link"><br>
+		  Message:<br>
+		  <input type="text" name="lastname" class="message">
+		</form>
+
+		<button class="request_button" type="button">Send</button>
+
+	 </div>
+
+
+	 <div class="content Ab" hidden></div>  <!-- w3-include-html="html/About.php" -->
+	 <div class="content Lo" hidden></div> <!-- w3-include-html="html/Login.php" -->
 
 </section>
 

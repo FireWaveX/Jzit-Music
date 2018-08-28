@@ -1,4 +1,3 @@
-<!DOCTYPE html>
  <form>
   Link of the song:<br>
   <input type="text" name="firstname" class="link"><br>

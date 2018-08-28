@@ -1,1 +1,1 @@
-<!DOCTYPE html>
+<button class="action" type="button">Send</button>
