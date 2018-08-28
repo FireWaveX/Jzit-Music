@@ -21,15 +21,18 @@
 
 <section>
 
-	 <div class="content Ho"> <!-- w3-include-html="html/Homepage.php" -->
+	 <div id="Ho" class="content Ho"> <!-- w3-include-html="html/Homepage.php" -->
 
-	 	<button class="action" type="button">Send</button>
+	 	<!-- <button class="action" type="button">Send</button> --> <!-- non vue.js option -->
+	 	<button v-on:click="request_button2">Send</button>
 
 	 	<div id="listOfSongs">
 	 		
-
+	 		
 
 	 	</div>
+
+
 
 	 </div>
 
@@ -44,7 +47,7 @@
 		</form>
 
 		<button class="request_button" type="button">Send</button>
-		<button v-on:click="request_button2">Send2</button>
+		
 
 	 </div>
 
