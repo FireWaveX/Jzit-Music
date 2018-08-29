@@ -140,7 +140,7 @@ var getSongs = new Vue({
       currentMenu: 'Home',
       activeHome : '',
       currentContent: 'Home',
-
+      currentSong: '',
   },
 
   created: function (argument) {
@@ -200,6 +200,19 @@ var getSongs = new Vue({
     activeClass(menuItem) {
 
       if (menuItem === this.currentMenu) {
+        return 'active'
+      }
+      return ''
+
+    },
+    activateSong(song){
+
+      this.currentSong = song;
+
+    },
+    activeClassSong(songItem){
+
+      if (songItem === this.currentSong) {
         return 'active'
       }
       return ''

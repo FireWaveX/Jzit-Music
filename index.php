@@ -38,7 +38,7 @@
 	 	<div  id="listOfSongs">
 
 	 		<ul>
- 			    <li v-for="(item, index) in songsNames">
+ 			    <li v-for="(item, index) in songsNames" v-on:click="activateSong(item.name)" v-bind:class="activeClassSong(item.name)">
 
 			      {{ item.name }}
 
