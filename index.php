@@ -11,19 +11,21 @@
 </head>
 <body>
 
+<div id="body">
+
 <header>
-	<h1 class="title">Jzit Music</h1>
+	
+	<h1 class="title" v-on:click="goBackHome">Jzit Music</h1>
 	<ul class="topnav" id="myTopnav">
-		<li><a class="active menu Hom" href="#">Homepage</a></li>
-		<li><a class="menu Req" href="#">Request a song</a></li>
-		<li><a class="menu Abo" href="#">About</a></li>
-		<li><a class="menu Log" href="#">Login</a></li>
+		<li><a v-bind:class="'menu Hom ' + activeClass('Home')" href="#" v-on:click="setCurrentMenu('Home')">Homepage</a></li>
+		<li><a v-bind:class="'menu Req ' + activeClass('Request')" href="#" v-on:click="setCurrentMenu('Request')">Request a song</a></li>
+		<li><a v-bind:class="'menu Abo ' + activeClass('About')" href="#" v-on:click="setCurrentMenu('About')">About</a></li>
+		<li><a v-bind:class="'menu Log ' + activeClass('Login')" href="#" v-on:click="setCurrentMenu('Login')">Login</a></li>
 		<li class="icon"><a class="menu ico" href="#" onclick="myFunction()">
 			<i class="fa fa-bars"></i>
 		</a></li>
 	</ul> 
 </header>
-
 
 <section id="sec1">
 
@@ -31,10 +33,20 @@
 
 		<!-- <button class="action" type="button">Send</button> --> <!-- non vue.js option -->
 	 	<!-- <button v-on:click="request_button2">Send</button> --> <!-- no need, automatic now -->
-	 	<h2>Song list</h2>
-	 	<button class="btn refresh" v-on:click="request_button2">Refresh</button>
+	 	<h2 v-on:click="goBackHome">Song list</h2>
+	 	<button class="btn refresh" v-on:click="fetchRequests">Refresh</button>
 
-	 	<div id="listOfSongs"></div>
+	 	<div  id="listOfSongs">
+
+	 		<ul>
+ 			    <li v-for="(item, index) in songsNames">
+
+			      {{ item.name }}
+
+			    </li>
+	 		</ul>
+
+	 	</div>
 
 	 	<div id="sing-btn">
 	 		<button data-toggle="modal" data-target="#videoModal">Let's sing !</button>
@@ -115,5 +127,7 @@
 <script type='text/javascript' src='js/jquery-ui.js'></script>
 <script type='text/javascript' src='js/main.js'></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+</div>
 </body>
 </html>

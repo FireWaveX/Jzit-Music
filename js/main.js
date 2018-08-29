@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
 
-  getRequests();
+  //getRequests();
 
 	$( ".request_button" ).click(function() {
 	  addRequest();
@@ -12,16 +12,18 @@ $(document).ready(function() {
   //   getRequests();
   // });
 
-  $( ".menu" ).click(function() {
-    $("a").removeClass( "active" );
-    $(this).addClass( "active" );
-  });
+  // $( ".menu" ).click(function() {
+  //   $("a").removeClass( "active" );
+  //   $(this).addClass( "active" );
+  // });
 
   showHTML();
 
 	includeHTML();
 
 });
+
+
 
 function addRequest() {
 
@@ -55,7 +57,7 @@ function addRequest() {
 function showHTML() {
 
   $( ".Hom" ).click(function() {
-    getRequests();
+    //getRequests();
     $(".content").attr('hidden', 'true');
     $(".Ho").removeAttr("hidden");
   });
@@ -76,28 +78,6 @@ function showHTML() {
   });
 
 }
-
-
-function getRequests(){
-
-  $.ajax({
-    type: 'GET',
-    url: 'https://apex.oracle.com/pls/apex/anime_keeper/Jzit/getRequest',
-    success: function(data) {
-      showData(data);
-      //console.log(data);
-    },
-
-    error: function() {
-
-      console.log('La requête n\'a pas abouti'); 
-    }
-
-  });    
-
-}
-
-
 
 function includeHTML() {
   var z, i, elmnt, file, xhttp;
@@ -127,64 +107,6 @@ function includeHTML() {
   }
 }
 
-function showData(data) {
-
-  $("#listOfSongs").empty();
-
-  console.log(data.items);
-
-  var items = data.items;
-
-  var ul = document.createElement('ul');
-
-  document.getElementById('listOfSongs').appendChild(ul);
-
-  items.forEach(function (item) {
-
-    var li = document.createElement('li');
-    ul.appendChild(li);
-
-    addIFrame(item.link, li);
-
-  });
-
-
-}
-
-function addIFrame(link, list){
-
-  var videoId = getId(link);
-
-  // var iframe = document.createElement('iframe');
-  // iframe.src = "https://www.youtube.com/embed/" + videoId +"";
-  // list.appendChild(iframe);
-
-  var key = "AIzaSyApxjtXcMyjhi83AG8CjBxvE4-WBkMwNAE";
-
-  q = 'https://www.googleapis.com/youtube/v3/videos?id='+ videoId +'&key='+ key +'&fields=items(snippet(title))&part=snippet' ;
-
-  $.ajax({
-        url: q, 
-        dataType: "jsonp",
-        success: function(data){
-          var video_name = data.items[0].snippet.title;
-          list.append(video_name);
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-          alert (textStatus, + ' | ' + errorThrown);
-          var video_name = "ERROR_LOADING_NAME";
-        }
-    });
-
-    // imagelink = "<img src=\"http:\/\/img.youtube.com\/vi\/"+videoId+"\/hqdefault.jpg\">";
-
-    // var video_thumbnail = $(imagelink);
-    // $("#Ho").append(video_thumbnail);
-        
-
-}
-
-
 function getId(url) {
     var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
     var match = url.match(regExp);
@@ -199,13 +121,175 @@ function getId(url) {
 
 /*---------- vue.js ----------*/
 
-new Vue({
-  el: '#Ho',
+var getSongs = new Vue({
+  el: '#body',
+
+  data: {
+      requests: [],
+      songsNames: [],
+      test: ['one', 'two'],
+      currentMenu: 'Home'
+  },
+
+  created: function (argument) {
+      this.fetchRequests();
+  },
+
   methods: {
-    request_button2: function () {
+    fetchRequests () {
+
+      this.songsNames = [];
+
+      var vm = this;
+
+      fetch('https://apex.oracle.com/pls/apex/anime_keeper/Jzit/getRequest').then(function(response) {
+
+        return response.json()
+
+      })
+      .then(function(data) {
+
+        var items = data.items;
+
+        items.forEach(function(item){
+
+          var videoId = getId(item.link);
+
+          var key = "AIzaSyApxjtXcMyjhi83AG8CjBxvE4-WBkMwNAE";
+          query = 'https://www.googleapis.com/youtube/v3/videos?id='+ videoId +'&key='+ key +'&fields=items(snippet(title))&part=snippet' ;
+
+          fetch(query).then(function(video) {
+
+            return video.json()
+
+          }).then(function(video) {
+
+            var video_name = video.items[0].snippet.title;
+            
+            console.log(video_name);
+
+            vm.songsNames.push({ name: video_name });
+
+          })
+        })               
+      })
+    },
+    goBackHome (){
       
-      getRequests();
+      this.currentMenu = "Home";
+      
+
+    },
+    setCurrentMenu(menu) {
+
+      this.currentMenu = menu
+
+    },
+    activeClass(menuItem) {
+
+      if (menuItem === this.currentMenu) {
+        return 'active'
+      }
+      return ''
 
     }
   }
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function getRequests(){
+
+//   $.ajax({
+//     type: 'GET',
+//     url: 'https://apex.oracle.com/pls/apex/anime_keeper/Jzit/getRequest',
+//     success: function(data) {
+//       showData(data);
+//       //console.log(data);
+//     },
+
+//     error: function() {
+
+//       console.log('La requête n\'a pas abouti'); 
+//     }
+
+//   });    
+
+// }
+
+// function showData(data) {
+
+//   //$("#listOfSongs").empty();
+
+//   var items = data.items;
+//   var ul = document.createElement('ul');
+
+//   document.getElementById('listOfSongs').appendChild(ul);
+
+//   items.forEach(function (item) {
+
+//     var li = document.createElement('li');
+//     ul.appendChild(li);
+
+//     addIFrame(item.link, li);
+
+//   });
+
+
+// }
+
+// function addIFrame(link, list){
+
+//   var videoId = getId(link);
+
+//   // var iframe = document.createElement('iframe');
+//   // iframe.src = "https://www.youtube.com/embed/" + videoId +"";
+//   // list.appendChild(iframe);
+
+//   var key = "AIzaSyApxjtXcMyjhi83AG8CjBxvE4-WBkMwNAE";
+
+//   q = 'https://www.googleapis.com/youtube/v3/videos?id='+ videoId +'&key='+ key +'&fields=items(snippet(title))&part=snippet' ;
+
+//   $.ajax({
+//         url: q, 
+//         dataType: "jsonp",
+//         success: function(data){
+//           var video_name = data.items[0].snippet.title;
+//           list.append(video_name);
+
+//         },
+//         error: function(jqXHR, textStatus, errorThrown) {
+//           alert (textStatus, + ' | ' + errorThrown);
+//           var video_name = "ERROR_LOADING_NAME";
+//         }
+//     });
+
+//     // imagelink = "<img src=\"http:\/\/img.youtube.com\/vi\/"+videoId+"\/hqdefault.jpg\">";
+
+//     // var video_thumbnail = $(imagelink);
+//     // $("#Ho").append(video_thumbnail);
+        
+
+// }
