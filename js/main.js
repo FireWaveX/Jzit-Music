@@ -54,31 +54,7 @@ function addRequest() {
 }
 
 
-function showHTML() {
-
-  $( ".Hom" ).click(function() {
-    //getRequests();
-    $(".content").attr('hidden', 'true');
-    $(".Ho").removeAttr("hidden");
-  });
-
-  $( ".Req" ).click(function() {
-    $(".content").attr('hidden', 'true');
-    $(".Re").removeAttr("hidden");
-  });
-
-  $( ".Abo" ).click(function() {
-    $(".content").attr('hidden', 'true');
-    $(".Ab").removeAttr("hidden");
-  });
-
-  $( ".Log" ).click(function() {
-    $(".content").attr('hidden', 'true');
-    $(".Lo").removeAttr("hidden");
-  });
-
-}
-
+// 
 function includeHTML() {
   var z, i, elmnt, file, xhttp;
   /*loop through a collection of all HTML elements:*/
@@ -141,6 +117,7 @@ var getSongs = new Vue({
       activeHome : '',
       currentContent: 'Home',
       currentSong: '',
+      videoIframeID: '',
   },
 
   created: function (argument) {
@@ -178,7 +155,7 @@ var getSongs = new Vue({
 
             var video_name = video.items[0].snippet.title;
 
-            vm.songsNames.push({ name: video_name });
+            vm.songsNames.push({ name: video_name , linkID : videoId});
 
           })
         })               
@@ -201,6 +178,13 @@ var getSongs = new Vue({
       x.className = "topnav";
 
     },
+    linkVidModal(){
+      $("#inputVideo").empty();
+      var videoId = this.videoIframeID;
+      var iframe = document.createElement('iframe');
+      iframe.src = "https://www.youtube.com/embed/" + videoId +"";
+      $("#inputVideo").append(iframe);
+    },
     activeClass(menuItem) {
 
       if (menuItem === this.currentMenu) {
@@ -209,9 +193,10 @@ var getSongs = new Vue({
       return ''
 
     },
-    activateSong(song){
+    activateSong(song, id){
 
       this.currentSong = song;
+      this.videoIframeID = id;
 
     },
     activeClassSong(songItem){
@@ -224,6 +209,7 @@ var getSongs = new Vue({
     }
   }
 })
+
 
 
 
@@ -320,5 +306,30 @@ var getSongs = new Vue({
 //     // var video_thumbnail = $(imagelink);
 //     // $("#Ho").append(video_thumbnail);
         
+
+// }
+
+// function showHTML() {
+
+//   $( ".Hom" ).click(function() {
+//     //getRequests();
+//     $(".content").attr('hidden', 'true');
+//     $(".Ho").removeAttr("hidden");
+//   });
+
+//   $( ".Req" ).click(function() {
+//     $(".content").attr('hidden', 'true');
+//     $(".Re").removeAttr("hidden");
+//   });
+
+//   $( ".Abo" ).click(function() {
+//     $(".content").attr('hidden', 'true');
+//     $(".Ab").removeAttr("hidden");
+//   });
+
+//   $( ".Log" ).click(function() {
+//     $(".content").attr('hidden', 'true');
+//     $(".Lo").removeAttr("hidden");
+//   });
 
 // }
