@@ -1,0 +1,46 @@
+.img {
+	display: none;
+}
+
+.Ab p {
+	width: 100%;
+}
+
+form input {
+	width: 93%;
+}
+
+form textarea {
+	width: 93%;
+}
+
+.topnav a:not(.active) {display: none;}
+
+.icon {
+	float: right;
+	display: block;
+}
+
+.ico {
+	display: block !important;
+}
+
+.topnav.responsive {
+	position: relative;
+}
+
+.topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.topnav.responsive li {
+    float: none;
+    display: block;
+    text-align: left;
+}
+
+.topnav.responsive a {
+	display: block !important;
+}
