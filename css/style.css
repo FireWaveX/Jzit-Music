@@ -13,6 +13,10 @@ p {
     padding: 1%;
 }
 
+.title {
+    cursor: pointer;
+}
+
 #listOfSongs {
     margin-top: 40px;
     margin-bottom: 50px;
@@ -21,6 +25,10 @@ p {
 .content {
     width: auto;
     background-image: url("../images/white-brushed.png");
+}
+
+.topnav {
+    margin-top: 20px;
 }
 
 form {
@@ -114,7 +122,8 @@ h1 {
     font-family: 'Abril Fatface', cursive;
     font-size: 4em;
     color: white;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
+    display: inline;
 }
 
 h2 {

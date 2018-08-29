@@ -189,12 +189,16 @@ var getSongs = new Vue({
       this.currentMenu = "Home";
       this.currentContent = "Home";
       this.activeHome = "active";
+      var x = document.getElementById("myTopnav");
+      x.className = "topnav";
 
     },
     setCurrentMenu(menu) {
 
       this.currentMenu = menu
       this.currentContent = menu
+      var x = document.getElementById("myTopnav");
+      x.className = "topnav";
 
     },
     activeClass(menuItem) {
