@@ -14,7 +14,8 @@ p {
 }
 
 #listOfSongs {
-    height: 50vh;
+    margin-top: 40px;
+    margin-bottom: 50px;
 }
 
 .content {
@@ -38,6 +39,10 @@ form textarea {
 }
 
 #Re button {
+    margin: 5%;
+}
+
+#Lo button {
     margin: 5%;
 }
 
@@ -92,11 +97,17 @@ button:hover{
 }
 
 .singer-img {
-    background-image: url(../images/singer.png);
-    background-size: cover;
     position: absolute;
     bottom: 0;
-    right: 0;
+    right: 20px;
+    width: 420px;
+}
+
+.singeuse-img {
+    position: absolute;
+    bottom: 0;
+    right: 20px;
+    width: 320px;
 }
 
 h1 {
@@ -106,9 +117,26 @@ h1 {
     margin-bottom: 30px;
 }
 
+h2 {
+    color: #3283E2;
+    font-size: 2em;
+    font-family: 'Questrial', sans-serif;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px #404040;
+    display: inline;
+}
+
 header {
     margin-left: 3%;
     margin-right: 3%;
+}
+
+.refresh {
+    margin-left: 80px;
+    position: relative;
+    bottom: 7px;
 }
 
 section {
@@ -116,20 +144,27 @@ section {
     margin-right: 3%;
 }
 
+header ul {
+    background-color: rgb(25,25,25,0.8);
+}
+
+header li {
+    float: left;
+    font-size: 1.5em;
+}
+
+#listOfSongs li:hover {
+    color: #3283E2;
+}
+
 ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: rgb(25,25,25,0.95);
 }
 
-li {
-    float: left;
-    font-size: 1.5em;
-}
-
-li a {
+.menu {
     display: block;
     color: white;
     text-align: center;
@@ -145,8 +180,21 @@ li a:hover {
     color: white;
 }
 
+#listOfSongs li {
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+#listOfSongs li:hover {
+    color: #3283E2;
+}
+
 .active {
     background-color: #3283E2;
+}
+
+.active:hover {
+    background-color: #2664AB;
 }
 
 footer {
