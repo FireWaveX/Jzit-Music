@@ -17,7 +17,7 @@ $(document).ready(function() {
   //   $(this).addClass( "active" );
   // });
 
-  showHTML();
+  //showHTML();
 
 	includeHTML();
 
@@ -118,6 +118,15 @@ function getId(url) {
     }
 }
 
+function myFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
+
 
 /*---------- vue.js ----------*/
 
@@ -128,7 +137,10 @@ var getSongs = new Vue({
       requests: [],
       songsNames: [],
       test: ['one', 'two'],
-      currentMenu: 'Home'
+      currentMenu: 'Home',
+      activeHome : '',
+      currentContent: 'Home',
+
   },
 
   created: function (argument) {
@@ -165,8 +177,6 @@ var getSongs = new Vue({
           }).then(function(video) {
 
             var video_name = video.items[0].snippet.title;
-            
-            console.log(video_name);
 
             vm.songsNames.push({ name: video_name });
 
@@ -177,12 +187,14 @@ var getSongs = new Vue({
     goBackHome (){
       
       this.currentMenu = "Home";
-      
+      this.currentContent = "Home";
+      this.activeHome = "active";
 
     },
     setCurrentMenu(menu) {
 
       this.currentMenu = menu
+      this.currentContent = menu
 
     },
     activeClass(menuItem) {

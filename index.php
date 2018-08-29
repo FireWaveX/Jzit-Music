@@ -15,7 +15,7 @@
 	<h1 class="title" v-on:click="goBackHome">Jzit Music</h1>
 	 <ul>
 	  <li>
-	  	<a v-bind:class="'menu Hom ' + activeClass('Home')" href="#" v-on:click="setCurrentMenu('Home')">Homepage</a>
+	  	<a v-bind:class="'menu Hom ' + activeClass('Home') + ' {{ activeHome }} '" href="#" v-on:click="setCurrentMenu('Home')">Homepage</a>
 	  </li>
 
 	  <li>
@@ -34,10 +34,8 @@
 
 <section id="sec1">
 
-	<div id="Ho" class="content Ho"> <!-- w3-include-html="html/Homepage.php" -->
+	<div id="Ho" v-bind:class="'content Ho '" v-show="currentContent === 'Home'"> <!-- w3-include-html="html/Homepage.php" -->
 
-		<!-- <button class="action" type="button">Send</button> --> <!-- non vue.js option -->
-	 	<!-- <button v-on:click="request_button2">Send</button> --> <!-- no need, automatic now -->
 	 	<h2 v-on:click="goBackHome">Song list</h2>
 	 	<button class="btn refresh" v-on:click="fetchRequests">Refresh</button>
 
@@ -84,7 +82,7 @@
 	</div>
 
 
-	<div id="Re" class="content Re" hidden> <!-- w3-include-html="html/Request.php" -->
+	<div id="Re" v-bind:class="'content Re '" v-show="currentContent === 'Request'"> <!-- w3-include-html="html/Request.php" -->
 
 		<img class="singer-img" src="images/Singer.png">
 
@@ -100,7 +98,7 @@
 	</div>
 
 
-	<div class="content Ab" hidden>
+	<div id="Ab" v-bind:class="'content Ab '" v-show="currentContent === 'About'">
 			<img class="singeuse-img" src="images/Singeuse.png">
 			
 			<p>About this website</p>
@@ -110,7 +108,7 @@
 
 	</div>  <!-- w3-include-html="html/About.php" -->
 
-	<div id="Re" class="content Lo" hidden>
+	<div id="Lo" v-bind:class="'content Lo '" v-show="currentContent === 'Login'">
 		<form>
 		  Username<br>
 		  <input type="text" id="username" name="username" class="username"><br>
@@ -127,12 +125,15 @@
 	Copyright Alexandre Ledemé & Thibaut Martinot 2018
 </footer>
 
+
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
 <script type='text/javascript' src='js/jquery.js'></script>
 <script type='text/javascript' src='js/jquery-ui.js'></script>
 <script type='text/javascript' src='js/main.js'></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
-</div>
+
 </body>
 </html>
