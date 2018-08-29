@@ -39,7 +39,7 @@
 	 	<div  id="listOfSongs">
 
 	 		<ul>
- 			    <li v-for="(item, index) in songsNames">
+ 			    <li v-for="(item, index) in songsNames" v-on:click="activateSong(item.name,item.linkID)" v-bind:class="activeClassSong(item.name)" :id="item.linkID">
 
 			      {{ item.name }}
 
@@ -49,7 +49,7 @@
 	 	</div>
 
 	 	<div id="sing-btn">
-	 		<button data-toggle="modal" data-target="#videoModal">Let's sing !</button>
+	 		<button v-on:click="linkVidModal()" data-toggle="modal" data-target="#videoModal">Let's sing !</button>
 	 	</div>
 
 	 	<div class="modal" id="videoModal">
@@ -63,8 +63,8 @@
 		        </div>
 		        
 		        <!-- Modal body -->
-		        <div class="modal-body">
-		          Video here
+		        <div id="inputVideo" class="modal-body">
+		          
 		        </div>
 		        
 		        <!-- Modal footer -->
