@@ -14,7 +14,6 @@
 <div id="body">
 
 <header>
-	
 	<h1 class="title" v-on:click="goBackHome">Jzit Music</h1>
 
 	<ul class="topnav" id="myTopnav">
@@ -94,7 +93,7 @@
 	</div>
 
 	<div id="Ab" v-bind:class="'content Ab '" v-show="currentContent === 'About'">
-			<img class="singeuse-img" src="images/Singeuse.png">
+			<img class="singeuse-img img" src="images/Singeuse.png">
 
 			
 			<p>About this website</p>
