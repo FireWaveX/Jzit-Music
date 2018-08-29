@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
 
-  getRequests();
+  //getRequests();
 
 	$( ".request_button" ).click(function() {
 	  addRequest();
@@ -22,6 +22,8 @@ $(document).ready(function() {
 	includeHTML();
 
 });
+
+
 
 function addRequest() {
 
@@ -55,7 +57,7 @@ function addRequest() {
 function showHTML() {
 
   $( ".Hom" ).click(function() {
-    getRequests();
+    //getRequests();
     $(".content").attr('hidden', 'true');
     $(".Ho").removeAttr("hidden");
   });
@@ -74,26 +76,6 @@ function showHTML() {
     $(".content").attr('hidden', 'true');
     $(".Lo").removeAttr("hidden");
   });
-
-}
-
-
-function getRequests(){
-
-  $.ajax({
-    type: 'GET',
-    url: 'https://apex.oracle.com/pls/apex/anime_keeper/Jzit/getRequest',
-    success: function(data) {
-      showData(data);
-      //console.log(data);
-    },
-
-    error: function() {
-
-      console.log('La requête n\'a pas abouti'); 
-    }
-
-  });    
 
 }
 
@@ -127,14 +109,30 @@ function includeHTML() {
   }
 }
 
+function getRequests(){
+
+  $.ajax({
+    type: 'GET',
+    url: 'https://apex.oracle.com/pls/apex/anime_keeper/Jzit/getRequest',
+    success: function(data) {
+      showData(data);
+      //console.log(data);
+    },
+
+    error: function() {
+
+      console.log('La requête n\'a pas abouti'); 
+    }
+
+  });    
+
+}
+
 function showData(data) {
 
-  $("#listOfSongs").empty();
-
-  console.log(data.items);
+  //$("#listOfSongs").empty();
 
   var items = data.items;
-
   var ul = document.createElement('ul');
 
   document.getElementById('listOfSongs').appendChild(ul);
@@ -169,6 +167,7 @@ function addIFrame(link, list){
         success: function(data){
           var video_name = data.items[0].snippet.title;
           list.append(video_name);
+
         },
         error: function(jqXHR, textStatus, errorThrown) {
           alert (textStatus, + ' | ' + errorThrown);
@@ -199,13 +198,71 @@ function getId(url) {
 
 /*---------- vue.js ----------*/
 
-new Vue({
-  el: '#Ho',
-  methods: {
-    request_button2: function () {
-      
-      getRequests();
+// var listOfSongs = new Vue({
+//   el: '#listOfSongs',
+//   data: {
+//     message: ''
+//   },
+//   created: function () {
 
+//   },
+//   methods: {
+
+//   }
+// })
+
+
+
+var getSongs = new Vue({
+  el: '#listOfSongs',
+
+  data: {
+      requests: [],
+      songsNames: [],
+      test: ['one', 'two']
+  },
+
+  created: function (argument) {
+      this.fetchRequests();
+  },
+
+  methods: {
+    fetchRequests () {
+
+      var vm = this;
+
+      fetch('https://apex.oracle.com/pls/apex/anime_keeper/Jzit/getRequest').then(function(response) {
+
+        return response.json()
+
+      })
+      .then(function(data) {
+
+        var items = data.items;
+
+        items.forEach(function(item){
+
+          var videoId = getId(item.link);
+
+          var key = "AIzaSyApxjtXcMyjhi83AG8CjBxvE4-WBkMwNAE";
+          query = 'https://www.googleapis.com/youtube/v3/videos?id='+ videoId +'&key='+ key +'&fields=items(snippet(title))&part=snippet' ;
+
+          fetch(query).then(function(video) {
+
+            return video.json()
+
+          }).then(function(video) {
+
+            var video_name = video.items[0].snippet.title;
+            
+            console.log(video_name);
+
+            vm.songsNames.push({ name: video_name });
+
+          })
+        })               
+      })
     }
   }
 })
+

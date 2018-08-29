@@ -26,8 +26,16 @@
 		<!-- <button class="action" type="button">Send</button> --> <!-- non vue.js option -->
 	 	<!-- <button v-on:click="request_button2">Send</button> --> <!-- no need, automatic now -->
 
-	 	<div id="listOfSongs">
-	 		
+	 	<div  id="listOfSongs">
+
+	 		<ul>
+ 			    <li v-for="(item, index) in songsNames">
+
+			      {{ item.name }}
+
+			    </li>
+	 		</ul>
+
 	 	</div>
 
 	 	<div id="sing-btn">
