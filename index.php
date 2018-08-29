@@ -31,6 +31,8 @@
 
 	<div id="Ho" v-bind:class="'content Ho '" v-show="currentContent === 'Home'"> <!-- w3-include-html="html/Homepage.php" -->
 
+		<img class="singer2-img img" src="images/Singer2.png">
+
 	 	<h2 v-on:click="goBackHome">Song list</h2>
 	 	<button class="btn refresh" v-on:click="fetchRequests">Refresh</button>
 

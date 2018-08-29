@@ -111,6 +111,13 @@ button:hover{
     width: 420px;
 }
 
+.singer2-img {
+    position: absolute;
+    bottom: 165px;
+    right: 20px;
+    width: 300px;
+}
+
 .singeuse-img {
     position: absolute;
     bottom: 0;
