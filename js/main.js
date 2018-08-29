@@ -12,10 +12,10 @@ $(document).ready(function() {
   //   getRequests();
   // });
 
-  $( ".menu" ).click(function() {
-    $("a").removeClass( "active" );
-    $(this).addClass( "active" );
-  });
+  // $( ".menu" ).click(function() {
+  //   $("a").removeClass( "active" );
+  //   $(this).addClass( "active" );
+  // });
 
   showHTML();
 
@@ -79,8 +79,6 @@ function showHTML() {
 
 }
 
-
-
 function includeHTML() {
   var z, i, elmnt, file, xhttp;
   /*loop through a collection of all HTML elements:*/
@@ -109,81 +107,6 @@ function includeHTML() {
   }
 }
 
-function getRequests(){
-
-  $.ajax({
-    type: 'GET',
-    url: 'https://apex.oracle.com/pls/apex/anime_keeper/Jzit/getRequest',
-    success: function(data) {
-      showData(data);
-      //console.log(data);
-    },
-
-    error: function() {
-
-      console.log('La requête n\'a pas abouti'); 
-    }
-
-  });    
-
-}
-
-function showData(data) {
-
-  //$("#listOfSongs").empty();
-
-  var items = data.items;
-  var ul = document.createElement('ul');
-
-  document.getElementById('listOfSongs').appendChild(ul);
-
-  items.forEach(function (item) {
-
-    var li = document.createElement('li');
-    ul.appendChild(li);
-
-    addIFrame(item.link, li);
-
-  });
-
-
-}
-
-function addIFrame(link, list){
-
-  var videoId = getId(link);
-
-  // var iframe = document.createElement('iframe');
-  // iframe.src = "https://www.youtube.com/embed/" + videoId +"";
-  // list.appendChild(iframe);
-
-  var key = "AIzaSyApxjtXcMyjhi83AG8CjBxvE4-WBkMwNAE";
-
-  q = 'https://www.googleapis.com/youtube/v3/videos?id='+ videoId +'&key='+ key +'&fields=items(snippet(title))&part=snippet' ;
-
-  $.ajax({
-        url: q, 
-        dataType: "jsonp",
-        success: function(data){
-          var video_name = data.items[0].snippet.title;
-          list.append(video_name);
-
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-          alert (textStatus, + ' | ' + errorThrown);
-          var video_name = "ERROR_LOADING_NAME";
-        }
-    });
-
-    // imagelink = "<img src=\"http:\/\/img.youtube.com\/vi\/"+videoId+"\/hqdefault.jpg\">";
-
-    // var video_thumbnail = $(imagelink);
-    // $("#Ho").append(video_thumbnail);
-        
-
-}
-
-
 function getId(url) {
     var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
     var match = url.match(regExp);
@@ -198,28 +121,14 @@ function getId(url) {
 
 /*---------- vue.js ----------*/
 
-// var listOfSongs = new Vue({
-//   el: '#listOfSongs',
-//   data: {
-//     message: ''
-//   },
-//   created: function () {
-
-//   },
-//   methods: {
-
-//   }
-// })
-
-
-
 var getSongs = new Vue({
-  el: '#listOfSongs',
+  el: '#body',
 
   data: {
       requests: [],
       songsNames: [],
-      test: ['one', 'two']
+      test: ['one', 'two'],
+      currentMenu: 'Home'
   },
 
   created: function (argument) {
@@ -228,6 +137,8 @@ var getSongs = new Vue({
 
   methods: {
     fetchRequests () {
+
+      this.songsNames = [];
 
       var vm = this;
 
@@ -262,7 +173,123 @@ var getSongs = new Vue({
           })
         })               
       })
+    },
+    goBackHome (){
+      
+      this.currentMenu = "Home";
+      
+
+    },
+    setCurrentMenu(menu) {
+
+      this.currentMenu = menu
+
+    },
+    activeClass(menuItem) {
+
+      if (menuItem === this.currentMenu) {
+        return 'active'
+      }
+      return ''
+
     }
   }
 })
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function getRequests(){
+
+//   $.ajax({
+//     type: 'GET',
+//     url: 'https://apex.oracle.com/pls/apex/anime_keeper/Jzit/getRequest',
+//     success: function(data) {
+//       showData(data);
+//       //console.log(data);
+//     },
+
+//     error: function() {
+
+//       console.log('La requête n\'a pas abouti'); 
+//     }
+
+//   });    
+
+// }
+
+// function showData(data) {
+
+//   //$("#listOfSongs").empty();
+
+//   var items = data.items;
+//   var ul = document.createElement('ul');
+
+//   document.getElementById('listOfSongs').appendChild(ul);
+
+//   items.forEach(function (item) {
+
+//     var li = document.createElement('li');
+//     ul.appendChild(li);
+
+//     addIFrame(item.link, li);
+
+//   });
+
+
+// }
+
+// function addIFrame(link, list){
+
+//   var videoId = getId(link);
+
+//   // var iframe = document.createElement('iframe');
+//   // iframe.src = "https://www.youtube.com/embed/" + videoId +"";
+//   // list.appendChild(iframe);
+
+//   var key = "AIzaSyApxjtXcMyjhi83AG8CjBxvE4-WBkMwNAE";
+
+//   q = 'https://www.googleapis.com/youtube/v3/videos?id='+ videoId +'&key='+ key +'&fields=items(snippet(title))&part=snippet' ;
+
+//   $.ajax({
+//         url: q, 
+//         dataType: "jsonp",
+//         success: function(data){
+//           var video_name = data.items[0].snippet.title;
+//           list.append(video_name);
+
+//         },
+//         error: function(jqXHR, textStatus, errorThrown) {
+//           alert (textStatus, + ' | ' + errorThrown);
+//           var video_name = "ERROR_LOADING_NAME";
+//         }
+//     });
+
+//     // imagelink = "<img src=\"http:\/\/img.youtube.com\/vi\/"+videoId+"\/hqdefault.jpg\">";
+
+//     // var video_thumbnail = $(imagelink);
+//     // $("#Ho").append(video_thumbnail);
+        
+
+// }
