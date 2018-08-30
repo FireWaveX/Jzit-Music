@@ -14,7 +14,7 @@
 <div id="body">
 
 <header>
-	<h1 class="title" v-on:click="goBackHome">Jzit Music</h1>
+	<h1 class="title" v-on:click="goBackHome">Jzit Music <span v-html="user"></span></h1>
 
 	<ul class="topnav" id="myTopnav">
 	  	<li><a v-bind:class="'menu Hom ' + activeClass('Home') + ' {{ activeHome }} '" href="#" v-on:click="setCurrentMenu('Home')">Homepage</a></li>
@@ -106,12 +106,12 @@
 	<div id="Lo" v-bind:class="'content Lo '" v-show="currentContent === 'Login'">
 		<form>
 		  Username<br>
-		  <input type="text" id="username" name="username" class="username"><br>
+		  <input type="text" id="username" name="username" class="username" v-model="dataUsername"><br>
 		  Password<br>
-		  <input type="password" id="password" name="password" class="password">
+		  <input type="password" id="password" name="password" class="password" v-model="dataPassword">
 		</form>
 
-		<button class="login_button" type="button">Log in</button>
+		<button class="login_button" id="loginBtn" type="button" v-on:click="login(dataUsername, dataPassword)">Log in</button>
 	</div> <!-- w3-include-html="html/Login.php" -->
 
 </section>
