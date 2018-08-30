@@ -41,6 +41,10 @@ form textarea {
     text-align: left;
 }
 
+#listOfSongs li {
+	width: 100%;
+}
+
 .topnav.responsive a {
 	display: block !important;
 }

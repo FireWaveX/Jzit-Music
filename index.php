@@ -31,6 +31,8 @@
 
 	<div id="Ho" v-bind:class="'content Ho '" v-show="currentContent === 'Home'"> <!-- w3-include-html="html/Homepage.php" -->
 
+		<img class="singer2-img img" src="images/Singer3.png">
+
 	 	<h2 v-on:click="goBackHome">Song list</h2>
 	 	<button class="btn refresh" v-on:click="fetchRequests">Refresh</button>
 
@@ -81,6 +83,8 @@
 
 		<img class="singer-img img" src="images/Singer.png">
 
+		<h2>Request a song</h2>
+
 	 	<form>
 		  Youtube link of the song<br>
 		  <input type="text" id="link" name="link" class="link"><br>
@@ -96,7 +100,7 @@
 			<img class="singeuse-img img" src="images/Singeuse.png">
 
 			
-			<p>About this website</p>
+			<h2>How to use this website</h2>
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 			<br/><br/>
 			Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
@@ -104,6 +108,7 @@
 	</div>  <!-- w3-include-html="html/About.php" -->
 
 	<div id="Lo" v-bind:class="'content Lo '" v-show="currentContent === 'Login'">
+		<h2>Who are you ?</h2>
 		<form>
 		  Username<br>
 		  <input type="text" id="username" name="username" class="username" v-model="dataUsername"><br>

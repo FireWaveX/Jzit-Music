@@ -8,6 +8,9 @@ body {
     font-family: 'Questrial', sans-serif;
     font-size: 18px;
 }
+footer {
+    font-size: 14px;
+}
 
 p {
     padding: 1%;
@@ -33,6 +36,7 @@ p {
 
 form {
     padding-left: 5%;
+    margin-top: 30px;
 }
 
 form input {
@@ -47,7 +51,7 @@ form textarea {
 }
 
 #Re button {
-    margin: 5%;
+    margin-left: 5%;
 }
 
 #Lo button {
@@ -111,6 +115,13 @@ button:hover{
     width: 420px;
 }
 
+.singer2-img {
+    position: absolute;
+    bottom: 165px;
+    right: 20px;
+    width: 300px;
+}
+
 .singeuse-img {
     position: absolute;
     bottom: 0;
@@ -135,6 +146,15 @@ h2 {
     margin-bottom: 30px;
     text-shadow: 1px 1px #404040;
     display: inline;
+    padding: 1%;
+}
+
+#Lo h2 {
+    padding-left: 5%;
+}
+
+#Re h2 {
+    padding-left: 5%;
 }
 
 header {
@@ -143,9 +163,7 @@ header {
 }
 
 .refresh {
-    margin-left: 80px;
-    position: relative;
-    bottom: 7px;
+    float: right;
 }
 
 section {
@@ -196,6 +214,8 @@ li a:hover {
 #listOfSongs li {
     margin-bottom: 10px;
     cursor: pointer;
+    width: 60%;
+    border-bottom: 1px solid #CBCBCB;
 }
 
 #listOfSongs li:hover {
