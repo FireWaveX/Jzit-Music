@@ -34,6 +34,12 @@ p {
     margin-top: 20px;
 }
 
+.delete {
+    color: black;
+    float: right;
+    width: 18px;
+}
+
 form {
     padding-left: 5%;
     margin-top: 30px;
@@ -214,7 +220,7 @@ li a:hover {
 #listOfSongs li {
     margin-bottom: 10px;
     cursor: pointer;
-    width: 90%;
+    width: 95%;
     border-bottom: 1px solid #CBCBCB;
 }
 

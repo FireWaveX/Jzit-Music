@@ -41,9 +41,8 @@
 
 	 		<ul>
  			    <li v-for="(item, index) in songsNames" v-on:click="activateSong(item.name,item.linkID)" v-bind:class="activeClassSong(item.name)" :id="item.linkID">
-
 			      {{ item.name }}
-
+			      <img class="delete" src="images/cancel.png">
 			    </li>
 	 		</ul>
 
