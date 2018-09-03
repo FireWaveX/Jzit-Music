@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Abril+Fatface|Questrial');
 
+html {
+    position: relative;
+    min-height: 100%;
+}
+
 body {
     background-image: url("../images/micro.jpg");
     background-repeat: no-repeat;
@@ -108,6 +113,7 @@ button:hover{
 
 #Ho {
     padding-bottom: 180px;
+    margin-bottom: 180px;
 }
 
 .Ab p {
@@ -244,4 +250,6 @@ footer {
     text-align: center;
     color: white;
     font-size: 14px;
+    position: absolute;
+    bottom: 0;
 }
