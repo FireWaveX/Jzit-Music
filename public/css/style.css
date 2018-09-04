@@ -18,6 +18,11 @@ p {
     padding: 1%;
 }
 
+iframe {
+    height: 70vh;
+    width: 100%;
+}
+
 .title {
     cursor: pointer;
 }
@@ -33,6 +38,22 @@ p {
 .content {
     width: auto;
     background-image: url("../images/white-brushed.png");
+}
+
+.modal-dialog {
+    max-width: 90%;
+    height: 90%;
+    margin: auto;
+    margin-top: 1%;
+}
+
+.modal-header {
+    border-bottom: 2px solid #3283E2;
+}
+
+.modal-content {
+    height: 100%;
+    background-image: url(../images/white-brushed.png);
 }
 
 .topnav {
@@ -154,11 +175,19 @@ h2 {
     font-size: 2em;
     font-family: 'Questrial', sans-serif;
     font-weight: bold;
+    text-shadow: 1px 1px #404040;
     margin-top: 0;
     margin-bottom: 30px;
-    text-shadow: 1px 1px #404040;
     display: inline;
     padding: 1%;
+}
+
+h3 {
+    color: #3283E2;
+    font-size: 2em;
+    font-family: 'Questrial', sans-serif;
+    font-weight: bold;
+    text-shadow: 1px 1px #404040;
 }
 
 #Lo h2 {
@@ -190,10 +219,6 @@ header ul {
 header li {
     float: left;
     font-size: 20px;
-}
-
-#listOfSongs li:hover {
-    color: #3283E2;
 }
 
 ul {
