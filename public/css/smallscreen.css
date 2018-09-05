@@ -14,6 +14,10 @@ form textarea {
 	width: 93%;
 }
 
+footer {
+	padding: 25px;
+}
+
 .topnav a:not(.active) {display: none;}
 
 .icon {
@@ -42,6 +46,10 @@ form textarea {
 }
 
 #listOfSongs li {
+	width: 100%;
+}
+
+#listOfSongs {
 	width: 100%;
 }
 

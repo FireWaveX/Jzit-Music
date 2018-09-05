@@ -67,7 +67,7 @@ function getId(url) {
     }
 }
 
-function myFunction() {
+function beResponsive() {
     var x = document.getElementById("myTopnav");
     if (x.className === "topnav") {
         x.className += " responsive";
@@ -94,6 +94,7 @@ var getSongs = new Vue({
       user: '',
       dataUsername: '',
       dataPassword: '',
+      UserMessage: '',
   },
 
   created: function (argument) {
@@ -133,6 +134,7 @@ var getSongs = new Vue({
 
           var videoId = getId(item.link);
           var user = item.username;
+          var msg = item.message;
 
           promiseKey.then(function(key){
 
@@ -149,7 +151,7 @@ var getSongs = new Vue({
                 var video_name = video.items[0].snippet.title;
                 console.log(user)
 
-                vm.songsNames.push({ name: video_name , linkID : videoId , username : user});
+                vm.songsNames.push({ name: video_name , linkID : videoId , username : user, usermsg : msg});
 
             })
 
@@ -192,8 +194,9 @@ var getSongs = new Vue({
       return ''
 
     },
-    activateSong(song, id){
+    activateSong(song, id, msg){
 
+      this.UserMessage = msg;
       this.currentSong = song;
       this.videoIframeID = id;
 

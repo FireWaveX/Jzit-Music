@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Abril+Fatface|Questrial');
 
+html {
+    position: relative;
+    min-height: 100%;
+}
+
 body {
     background-image: url("../images/micro.jpg");
     background-repeat: no-repeat;
@@ -8,12 +13,14 @@ body {
     font-family: 'Questrial', sans-serif;
     font-size: 18px;
 }
-footer {
-    font-size: 14px;
-}
 
 p {
     padding: 1%;
+}
+
+iframe {
+    height: 70vh;
+    width: 100%;
 }
 
 .title {
@@ -23,6 +30,9 @@ p {
 #listOfSongs {
     margin-top: 40px;
     margin-bottom: 50px;
+    height: 30vh;
+    width: 65%;
+    overflow-y: scroll;
 }
 
 .content {
@@ -30,8 +40,30 @@ p {
     background-image: url("../images/white-brushed.png");
 }
 
+.modal-dialog {
+    max-width: 90%;
+    height: 90%;
+    margin: auto;
+    margin-top: 1%;
+}
+
+.modal-header {
+    border-bottom: 2px solid #3283E2;
+}
+
+.modal-content {
+    height: 100%;
+    background-image: url(../images/white-brushed.png);
+}
+
 .topnav {
     margin-top: 20px;
+}
+
+.delete {
+    color: black;
+    float: right;
+    width: 18px;
 }
 
 form {
@@ -102,6 +134,7 @@ button:hover{
 
 #Ho {
     padding-bottom: 180px;
+    margin-bottom: 180px;
 }
 
 .Ab p {
@@ -142,11 +175,19 @@ h2 {
     font-size: 2em;
     font-family: 'Questrial', sans-serif;
     font-weight: bold;
+    text-shadow: 1px 1px #404040;
     margin-top: 0;
     margin-bottom: 30px;
-    text-shadow: 1px 1px #404040;
     display: inline;
     padding: 1%;
+}
+
+h3 {
+    color: #3283E2;
+    font-size: 2em;
+    font-family: 'Questrial', sans-serif;
+    font-weight: bold;
+    text-shadow: 1px 1px #404040;
 }
 
 #Lo h2 {
@@ -180,10 +221,6 @@ header li {
     font-size: 20px;
 }
 
-#listOfSongs li:hover {
-    color: #3283E2;
-}
-
 ul {
     list-style-type: none;
     margin: 0;
@@ -214,7 +251,7 @@ li a:hover {
 #listOfSongs li {
     margin-bottom: 10px;
     cursor: pointer;
-    width: 60%;
+    width: 95%;
     border-bottom: 1px solid #CBCBCB;
 }
 
@@ -237,4 +274,11 @@ footer {
     width: 100%;
     text-align: center;
     color: white;
+    font-size: 14px;
+    position: absolute;
+    bottom: 0;
+}
+
+.userNameRequest {
+    font-weight: bold;
 }

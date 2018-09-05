@@ -22,7 +22,7 @@
 		<li><a v-bind:class="'menu Req ' + activeClass('Request')" href="#" v-on:click="setCurrentMenu('Request')">Request a song</a></li>
 		<li><a v-bind:class="'menu Abo ' + activeClass('About')" href="#" v-on:click="setCurrentMenu('About')">About</a></li>
 		<li><a v-bind:class="'menu Log ' + activeClass('Login')" href="#" v-on:click="setCurrentMenu('Login')">Login</a></li>
-		<li class="icon"><a class="menu ico" href="#" onclick="myFunction()">
+		<li class="icon"><a class="menu ico" href="#" onclick="beResponsive()">
 			<i class="fa fa-bars"></i>
 		</a></li>
 	</ul> 
@@ -40,9 +40,10 @@
 	 	<div  id="listOfSongs">
 
 	 		<ul>
- 			    <li v-for="(item, index) in songsNames" v-on:click="activateSong(item.name,item.linkID)" v-bind:class="activeClassSong(item.name)" :id="item.linkID">
+ 			    <li v-for="(item, index) in songsNames" v-on:click="activateSong(item.name,item.linkID,item.usermsg)" v-bind:class="activeClassSong(item.name)" :id="item.linkID">
 
 			      <span class="userNameRequest">{{ item.username }}</span> : {{ item.name }}
+			      <img class="delete" src="images/cancel.png">
 
 			    </li>
 	 		</ul>
@@ -50,7 +51,7 @@
 	 	</div>
 
 	 	<div id="sing-btn">
-	 		<button v-on:click="linkVidModal()" data-toggle="modal" data-target="#videoModal">Let's sing !</button>
+	 		<button  v-on:click="linkVidModal()" data-toggle="modal" data-target="#videoModal">Let's sing !</button>
 	 	</div>
 
 	 	<div class="modal" id="videoModal">
@@ -59,19 +60,25 @@
 		      
 		        <!-- Modal Header -->
 		        <div class="modal-header">
-		          <h4 class="modal-title">Music video</h4>
+		          <h3 class="modal-title">Music video</h3>
 		          <button type="button" class="close" data-dismiss="modal">&times;</button>
 		        </div>
 		        
 		        <!-- Modal body -->
 		        <div id="inputVideo" class="modal-body">
-		          
+		        	
+		        </div>
+
+		        <div id="videoMessage" class="modal-body">
+
+		        	{{ UserMessage }}
+		        	
 		        </div>
 		        
 		        <!-- Modal footer -->
-		        <div class="modal-footer">
+		        <!-- <div class="modal-footer">
 		          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-		        </div>
+		        </div> -->
 		        
 		      </div>
 		    </div>
@@ -100,11 +107,13 @@
 	<div id="Ab" v-bind:class="'content Ab '" v-show="currentContent === 'About'">
 			<img class="singeuse-img img" src="images/Singeuse.png">
 
+			<h2>About Jzit music</h2>
+			<p>Welcome to Jzit music ! <br/>
+			This website is meant for streamers who want to let the community choose the songs for karaoke or songs that will simply be played on their stream. The viewers make their song requests, and the streamer chooses songs among the list to play while streaming.</p> 
 			
 			<h2>How to use this website</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-			<br/><br/>
-			Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+			<p>In order to request a song, you must first login to the website so that everybody can see who requested the song. To do so, visit the "login" page and enter your username and password. After that, you can request a song on the dedicated page by pasting in the URL field, the Youtube link to the music video you'd like to request. Along with the link, feel free to add a fancy message to be displayed with the music video !
+			<br/>All the requested songs are listed on the homepage and the corresponding song video can be accessed by clicking a link.</p>
 
 	</div>  <!-- w3-include-html="html/About.php" -->
 
