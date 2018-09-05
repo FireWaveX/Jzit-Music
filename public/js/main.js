@@ -106,6 +106,19 @@ var getSongs = new Vue({
       this.songsNames = [];
 
       var vm = this;
+      var a = '';
+
+      var promiseKey = new Promise(function(resolve, reject) {
+
+        fetch('https://apex.oracle.com/pls/apex/anime_keeper/Jzit/getKey').then(function(response){
+          return response.json()
+        })
+        .then(function(data){
+          a = data.items[0].key;
+        })
+
+        resolve(a);
+      });
 
       fetch('https://apex.oracle.com/pls/apex/anime_keeper/Jzit/getRequest').then(function(response) {
 
@@ -119,21 +132,31 @@ var getSongs = new Vue({
         items.forEach(function(item){
 
           var videoId = getId(item.link);
+          var user = item.username;
 
-          var key = "AIzaSyApxjtXcMyjhi83AG8CjBxvE4-WBkMwNAE";
-          query = 'https://www.googleapis.com/youtube/v3/videos?id='+ videoId +'&key='+ key +'&fields=items(snippet(title))&part=snippet' ;
+          promiseKey.then(function(key){
 
-          fetch(query).then(function(video) {
+            query = 'https://www.googleapis.com/youtube/v3/videos?id='+ videoId +'&key='+ a +'&fields=items(snippet(title))&part=snippet' ;
 
-            return video.json()
+            // query = '/video?id=' + videoId;
+            
+            fetch(query).then(function(video) {
+              
+              return video.json();
 
-          }).then(function(video) {
+            }).then(function(video) {
 
-            var video_name = video.items[0].snippet.title;
+                var video_name = video.items[0].snippet.title;
+                console.log(user)
 
-            vm.songsNames.push({ name: video_name , linkID : videoId});
+                vm.songsNames.push({ name: video_name , linkID : videoId , username : user});
+
+            })
+
 
           })
+
+            
         })               
       })
     },
