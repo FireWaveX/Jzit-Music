@@ -43,7 +43,7 @@
  			    <li v-for="(item, index) in songsNames" v-on:click="activateSong(item.name,item.linkID,item.usermsg)" v-bind:class="activeClassSong(item.name)" :id="item.linkID">
 
 			      <span class="userNameRequest">{{ item.username }}</span> : {{ item.name }}
-			      <img class="delete" src="images/cancel.png">
+			      <img class="delete" src="images/cancel.png" v-on:click="deleteSong(item.idSong)">
 
 			    </li>
 	 		</ul>
@@ -95,12 +95,12 @@
 
 	 	<form>
 		  Youtube link of the song<br>
-		  <input type="text" id="link" name="link" class="link"><br>
+		  <input v-model="inputLink" type="text" id="link" name="link" class="link"><br>
 		  Your message<br>
-		  <textarea id="message" name="message" class="message"></textarea>
+		  <textarea v-model="inputMessage" id="message" name="message" class="message"></textarea>
 		</form>
 
-		<button class="request_button" type="button">Request</button>
+		<button v-on:click="addRequest()" class="request_button" type="button">Request</button>
 
 	</div>
 
@@ -123,11 +123,20 @@
 		  Username<br>
 		  <input type="text" id="username" name="username" class="username" v-model="dataUsername"><br>
 		  Password<br>
-		  <input type="password" id="password" name="password" class="password" v-model="dataPassword">
+		  <input type="password" id="password" name="password" class="password" v-model="dataPassword"><br>
+		  Confirm password (only if you register)<br>
+		  <input type="password" id="password" name="password" class="password" v-model="dataCheckPassword">
 		</form>
 
 		<button class="login_button" id="loginBtn" type="button" v-on:click="login(dataUsername, dataPassword)">Log in</button>
+		<button class="login_button" id="loginBtn" type="button" v-on:click="register(dataUsername, dataPassword, dataCheckPassword)">Register</button>
 	</div> <!-- w3-include-html="html/Login.php" -->
+
+	<div id="Lo" v-bind:class="'content Lo '" v-show="currentContent === 'Logout'">
+		<h2>Going already ?</h2>
+		
+		<button class="login_button" id="loginBtn" type="button" v-on:click="logout()">Logout</button>
+	</div>
 
 </section>
 
