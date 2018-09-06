@@ -1,4 +1,4 @@
-require('./scr/index');
+require('./src/index');
 
 const fetch = require('node-fetch');
 
