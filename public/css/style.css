@@ -282,3 +282,10 @@ footer {
 .userNameRequest {
     font-weight: bold;
 }
+
+#loggedIn {
+    float: right;
+    margin-top: 20px;
+    font-size: 40px;
+    color: white;
+}

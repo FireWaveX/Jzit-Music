@@ -245,7 +245,7 @@ var getSongs = new Vue({
     },
     deleteSong(id){
 
-      if(this.userGrade !== "mod" || this.userGrade !== "supermod")
+      if(this.userGrade !== "mod" && this.userGrade !== "supermod")
       {
         alert("you must be logged as an admin or mod to delete a song");
       }
