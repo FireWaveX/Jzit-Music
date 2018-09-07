@@ -1,61 +1,3 @@
-$(document).ready(function() {
-
-  //getRequests();
-
-	$( ".request_button" ).click(function() {
-	  addRequest();
-	});
-
-  // non vue.js option
-  // $( ".action" ).click(function() {
-  //   getRequests();
-  // });
-
-  // $( ".menu" ).click(function() {
-  //   $("a").removeClass( "active" );
-  //   $(this).addClass( "active" );
-  // });
-
-  // showHTML();
-
-	// includeHTML();
-
-});
-
-
-
-function addRequest() {
-
-	var message = $.trim($('.message').val());
-	// Check the link
-    var link = $.trim($('.link').val());
-
-    if (link  === '') {
-        alert('input link please');
-        return false;
-    }
-
-	var xhr = new XMLHttpRequest();
-	var url = "https://apex.oracle.com/pls/apex/anime_keeper/Jzit/postRequest";
-	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-Type", "application/json");
-	xhr.onreadystatechange = function () {
-	    if (xhr.readyState === 4 && xhr.status === 200) {
-	        var json = JSON.parse(xhr.responseText);
-	    }
-	};
-	var data = JSON.stringify({"LINK": link, "MESSAGE": message});
-	xhr.send(data);
-
-	$(".message").val('');
-	$(".link").val('');
-
-}
-
-
-// 
-
-
 function getId(url) {
     var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
     var match = url.match(regExp);
@@ -83,20 +25,34 @@ var getSongs = new Vue({
   el: '#body',
 
   data: {
-      requests: [],
-      songsNames: [],
-      test: ['one', 'two'],
-      currentMenu: 'Home',
-      activeHome : '',
-      currentContent: 'Home',
-      currentSong: '',
-      videoIframeID: '',
-      user: '',
-      dataUsername: '',
-      dataPassword: '',
+      requests: [],             // array for a new song to request
+      songsNames: [],           // array of the songs that have been requested (fetched from database)
+      currentMenu: 'Home',      // contains the name of the active page (for the header menu)
+      activeHome : '',          // used for the class "active" in the header menu
+      currentContent: 'Home',   // used to display the data for the diffrent pages ("Home" will make the homepage displayed)
+      currentSong: '',          // this is used to display the last song clicked in the songs list in homepage. Also used to determine what song will be displayed in the modal
+      videoIframeID: '',        // contains the youtube ID of the video
+      user: '',                 // username of the person who is logged in. If it is '' or null, there is no one logged in
+      userGrade: '',            // this is to determin what the user can do, there is casual / mod (can delete songs) / supermod (can delete songs and change the grade of casual & mod)
+      dataUsername: '',         // this is a bind var for the login page
+      dataPassword: '',         // this is a bind var for the login page
+      dataCheckPassword: '',    // this is a bind var for the login page
+      UserMessage: '',          // this is a bind var for the homepage page (for the modal)
+      inputLink: '',            // this is a bind var for the request page
+      inputMessage: '',         // this is a bind var for the request page
   },
 
   created: function (argument) {
+
+      var name = localStorage.getItem('name');
+      var grade = localStorage.getItem('grd');
+      if (name !== null){
+        this.user = name;
+      }
+      if (grade !== null){
+        this.userGrade = grade;
+      }
+
       this.fetchRequests();
   },
 
@@ -106,6 +62,19 @@ var getSongs = new Vue({
       this.songsNames = [];
 
       var vm = this;
+      var a = '';
+
+      var promiseKey = new Promise(function(resolve, reject) {
+
+        fetch('https://apex.oracle.com/pls/apex/anime_keeper/Jzit/getKey').then(function(response){
+          return response.json()
+        })
+        .then(function(data){
+          a = data.items[0].key;
+        })
+
+        resolve(a);
+      });
 
       fetch('https://apex.oracle.com/pls/apex/anime_keeper/Jzit/getRequest').then(function(response) {
 
@@ -119,21 +88,32 @@ var getSongs = new Vue({
         items.forEach(function(item){
 
           var videoId = getId(item.link);
+          var user = item.username;
+          var msg = item.message;
+          var idOfSong = item.id;
 
-          var key = "AIzaSyApxjtXcMyjhi83AG8CjBxvE4-WBkMwNAE";
-          query = 'https://www.googleapis.com/youtube/v3/videos?id='+ videoId +'&key='+ key +'&fields=items(snippet(title))&part=snippet' ;
+          promiseKey.then(function(key){
 
-          fetch(query).then(function(video) {
+            query = 'https://www.googleapis.com/youtube/v3/videos?id='+ videoId +'&key='+ a +'&fields=items(snippet(title))&part=snippet' ;
 
-            return video.json()
+            // query = '/video?id=' + videoId;
+            
+            fetch(query).then(function(video) {
+              
+              return video.json();
 
-          }).then(function(video) {
+            }).then(function(video) {
 
-            var video_name = video.items[0].snippet.title;
+                var video_name = video.items[0].snippet.title;
 
-            vm.songsNames.push({ name: video_name , linkID : videoId});
+                vm.songsNames.push({ name: video_name , linkID : videoId , username : user, usermsg : msg, idSong: idOfSong});
+
+            })
+
 
           })
+
+            
         })               
       })
     },
@@ -148,8 +128,14 @@ var getSongs = new Vue({
     },
     setCurrentMenu(menu) {
 
-      this.currentMenu = menu
+      if (menu === "Login" && this.user !== ""){
+        this.currentContent = "Logout"
+      }
+      else{
       this.currentContent = menu
+      }
+
+      this.currentMenu = menu
       var x = document.getElementById("myTopnav");
       x.className = "topnav";
 
@@ -169,8 +155,9 @@ var getSongs = new Vue({
       return ''
 
     },
-    activateSong(song, id){
+    activateSong(song, id, msg){
 
+      this.UserMessage = msg;
       this.currentSong = song;
       this.videoIframeID = id;
 
@@ -204,15 +191,117 @@ var getSongs = new Vue({
           if (md5Password === item.password) {
             if (name === item.username) {
 
-              vm.user ='';
               vm.user = ' - ' + name;
+              vm.userGrade = item.grade;
               console.log("login sucess")
+              localStorage.setItem('name', name);
+              localStorage.setItem('grd', item.grade);
+              getSongs.goBackHome();
               return;
             }
           }
         })
+        data = '';
       })
-    }
+    },
+    logout(){
+
+      this.user = '';
+      this.userGrade = '';
+      localStorage.setItem('name', '');
+      localStorage.setItem('grd', '');
+      getSongs.goBackHome();
+
+    },
+    register(name, password, checkPassword)
+    {
+
+      if (password === checkPassword) {
+
+        passwd = MD5(password);
+
+        fetch('https://apex.oracle.com/pls/apex/anime_keeper/Jzit/register',
+        {
+          headers : {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          method: "POST",
+          body: JSON.stringify({USERNAME: name, PASSWORD: passwd, GRADE: "casual"})
+        })
+        .then(function(res){ getSongs.fetchRequests() })
+        .catch(function(res){ console.log(res) })
+
+        this.user = ' - ' + name;
+        this.userGrade = 'casual';
+        localStorage.setItem('name', name);
+        localStorage.setItem('grd', 'casual');
+        getSongs.goBackHome();
+      }
+      else{
+        alert("Input the same password please");
+      }
+
+    },
+    deleteSong(id){
+
+      if(this.userGrade !== "mod" && this.userGrade !== "supermod")
+      {
+        alert("you must be logged as an admin or mod to delete a song");
+      }
+      else
+      {
+        fetch('https://apex.oracle.com/pls/apex/anime_keeper/Jzit/deleteSong',
+        {
+          headers : {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          method: "POST",
+          body: JSON.stringify({ID: id})
+        })
+        .then(function(res){ getSongs.fetchRequests() })
+        .catch(function(res){ console.log(res) })
+      }
+    },
+    addRequest(){
+
+      if(this.user === "")
+      {
+        alert("you must be logged in to submit a song")
+      }
+      else
+      {
+
+        var message = this.inputMessage.trim();
+        // Check the link
+        var link = this.inputLink.trim();
+
+        if (link  === '') {
+            alert('input link please');
+            return false;
+        }
+
+        var xhr = new XMLHttpRequest();
+        var url = "https://apex.oracle.com/pls/apex/anime_keeper/Jzit/postRequest";
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                var json = JSON.parse(xhr.responseText);
+            }
+        };
+        var data = JSON.stringify({"LINK": link, "MESSAGE": message, "USER": this.user});
+        xhr.send(data);
+
+        this.inputMessage = '';
+        this.inputLink = '';
+
+        getSongs.activeClass('Home');
+        getSongs.setCurrentMenu('Home');
+        getSongs.fetchRequests();
+      }
+    },
   }
 })
 
@@ -435,7 +524,29 @@ var MD5 = function (string) {
 
 
 
+// $(document).ready(function() {
 
+//   //getRequests();
+
+//  // $( ".request_button" ).click(function() {
+//  //   addRequest();
+//  // });
+
+//   // non vue.js option
+//   // $( ".action" ).click(function() {
+//   //   getRequests();
+//   // });
+
+//   // $( ".menu" ).click(function() {
+//   //   $("a").removeClass( "active" );
+//   //   $(this).addClass( "active" );
+//   // });
+
+//   // showHTML();
+
+//  // includeHTML();
+
+// });
 
 
 
@@ -566,4 +677,33 @@ var MD5 = function (string) {
 //       return;
 //     }
 //   }
+// }
+
+
+// function addRequest() {
+
+//  var message = $.trim($('.message').val());
+//  // Check the link
+//     var link = $.trim($('.link').val());
+
+//     if (link  === '') {
+//         alert('input link please');
+//         return false;
+//     }
+
+//  var xhr = new XMLHttpRequest();
+//  var url = "https://apex.oracle.com/pls/apex/anime_keeper/Jzit/postRequest";
+//  xhr.open("POST", url, true);
+//  xhr.setRequestHeader("Content-Type", "application/json");
+//  xhr.onreadystatechange = function () {
+//      if (xhr.readyState === 4 && xhr.status === 200) {
+//          var json = JSON.parse(xhr.responseText);
+//      }
+//  };
+//  var data = JSON.stringify({"LINK": link, "MESSAGE": message});
+//  xhr.send(data);
+
+//  $(".message").val('');
+//  $(".link").val('');
+
 // }
